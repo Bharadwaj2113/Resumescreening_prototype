@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Reminder and Calendar Event Creation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Interview Reminder and Calendar Event Creation</h1>
+        <form id="calendarEventForm">
+            <label for="eventTitle">Event Title:</label>
+            <input type="text" id="eventTitle" name="eventTitle" required>
+
+            <label for="eventStart">Interview Date and Time:</label>
+            <input type="datetime-local" id="interviewDateTime" name="interviewDateTime" required>
+
+            <label for="eventLocation">Location:</label>
+            <input type="text" id="eventLocation" name="eventLocation">
+
+            <label for="eventDescription">Description:</label>
+            <textarea id="eventDescription" name="eventDescription" rows="4"></textarea>
+
+            <button type="submit">Create Event</button>
+        </form>
+        <div id="reminder"></div> <!-- Display reminder here -->
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById("calendarEventForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+            var interviewDateTime = new Date(document.getElementById("interviewDateTime").value);
+            var reminderTime = new Date(interviewDateTime.getTime() - (30 * 60 * 1000)); // 30 minutes before interview
+            document.getElementById("reminder").innerHTML = "Reminder: Interview at " + reminderTime.toLocaleString();
+            // Additional code for creating calendar event
+        });
+    </script>
+</body>
+</html>
